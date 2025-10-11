@@ -10,3 +10,9 @@ C:\Users\pc\source\repos\NexusLauncher\NexusLauncher.Models\obj\Debug\NexusLaunc
 C:\Users\pc\source\repos\NexusLauncher\NexusLauncher.Models\obj\Debug\NexusLauncher.Models.csproj.CoreCompileInputs.cache
 C:\Users\pc\source\repos\NexusLauncher\NexusLauncher.Models\obj\Debug\NexusLauncher.Models.dll
 C:\Users\pc\source\repos\NexusLauncher\NexusLauncher.Models\obj\Debug\NexusLauncher.Models.pdb
+D:\Github\NexusLauncher\NexusLauncher.Models\bin\Debug\NexusLauncher.Models.dll
+D:\Github\NexusLauncher\NexusLauncher.Models\bin\Debug\NexusLauncher.Models.pdb
+D:\Github\NexusLauncher\NexusLauncher.Models\obj\Debug\NexusLauncher.Models.csproj.AssemblyReference.cache
+D:\Github\NexusLauncher\NexusLauncher.Models\obj\Debug\NexusLauncher.Models.csproj.CoreCompileInputs.cache
+D:\Github\NexusLauncher\NexusLauncher.Models\obj\Debug\NexusLauncher.Models.dll
+D:\Github\NexusLauncher\NexusLauncher.Models\obj\Debug\NexusLauncher.Models.pdb
