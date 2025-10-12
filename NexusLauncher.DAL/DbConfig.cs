@@ -5,6 +5,6 @@ namespace NexusLauncher.DAL
     public static class DbConfig
     {
         public static string ConnectionString =>
-            ConfigurationManager.ConnectionStrings["NexusLauncher"].ConnectionString;
+            ConfigurationManager.ConnectionStrings["NexusLauncherDB"].ConnectionString;
     }
 }
