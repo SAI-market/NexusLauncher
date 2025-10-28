@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NexusLauncher.Entidades")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+75b08cfe996d4eed6aaa25fc30fa38b92854bcce")]
 [assembly: System.Reflection.AssemblyProductAttribute("NexusLauncher.Entidades")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NexusLauncher.Entidades")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

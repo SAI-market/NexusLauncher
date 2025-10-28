@@ -6,7 +6,7 @@ namespace NexusLauncher.UI
 {
     public partial class frmRegistro : Form
     {
-        private readonly UserService _userService = new UserService();
+        private UserService userService = new UserService();
 
         public frmRegistro()
         {
@@ -53,7 +53,7 @@ namespace NexusLauncher.UI
 
             // Intentar registrar el usuario
             string errorMessage;
-            bool registrado = _userService.RegisterUser(
+            bool registrado = userService.Register(
                 txtUsername.Text.Trim(),
                 txtPassword.Text,
                 txtDisplayName.Text.Trim(),

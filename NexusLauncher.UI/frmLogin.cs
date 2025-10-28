@@ -1,13 +1,13 @@
-﻿using System;
-using System.Windows.Forms;
-using NexusLauncher.BLL;
+﻿using NexusLauncher.BLL;
 using NexusLauncher.Models;
+using System;
+using System.Windows.Forms;
 
 namespace NexusLauncher.UI
 {
     public partial class frmLogin : Form
     {
-        private readonly UserService _userService = new UserService();
+        private UserService userService = new UserService();
 
         public frmLogin()
         {
@@ -16,75 +16,29 @@ namespace NexusLauncher.UI
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtUsername.Text))
-            {
-                MessageBox.Show("Por favor, ingresá tu nombre de usuario.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtUsername.Focus();
-                return;
-            }
+            string username = txtUsername.Text;
+            string password = txtPassword.Text;
 
-            if (string.IsNullOrWhiteSpace(txtPassword.Text))
-            {
-                MessageBox.Show("Por favor, ingresá tu contraseña.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtPassword.Focus();
-                return;
-            }
+            User user = userService.Login(username, password);
 
-            if (_userService.Authenticate(txtUsername.Text.Trim(), txtPassword.Text, out User user))
+            if (user != null)
             {
-                // Guardar sesión (ya lo tenías)
                 SessionManager.Instance.Login(user);
 
-                // Si NO es admin, abrir Main directamente
-                if (!user.Admin)
-                {
-                    var main = new frmMain();
-                    main.Show();
-                    this.Hide();
-                    return;
-                }
-
-                // Si es admin, pedir que elija cómo entrar
-                using (var elegir = new frmElegirUserOAdmin(user))
-                {
-                    // mostramos modal y le pasamos this como owner
-                    var result = elegir.ShowDialog(this);
-
-                    if (result == DialogResult.OK) // Entrar como user normal
-                    {
-                        var main = new frmMain();
-                        main.Show();
-                        this.Hide();
-                        return;
-                    }
-                    else if (result == DialogResult.Yes) // Entrar como admin -> Biblioteca general
-                    {
-                        var biblioteca = new frmBibliotecaGeneral();
-                        biblioteca.Show();
-                        this.Hide();
-                        return;
-                    }
-                    else
-                    {
-                        // Canceló o cerró la ventana de elección: quedarse en login
-                        return;
-                    }
-                }
+                frmMain mainForm = new frmMain(user);
+                mainForm.Show();
+                this.Hide();
             }
             else
             {
-                MessageBox.Show("Credenciales inválidas", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Nombre de usuario o contraseña incorrectos.", "Error de inicio de sesión", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void btnRegistrarse_Click(object sender, EventArgs e)
+        private void linkRegister_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            var frmRegistro = new frmRegistro();
-            frmRegistro.ShowDialog();
+            frmRegistro registroForm = new frmRegistro();
+            registroForm.ShowDialog();
         }
-
-        private void textBox1_TextChanged(object sender, EventArgs e) { }
-
-        private void label1_Click(object sender, EventArgs e) { }
     }
 }

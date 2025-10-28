@@ -81,9 +81,10 @@ namespace NexusLauncher.UI
             }
         }
 
+        // --- ESTE ES EL MÉTODO CORREGIDO ---
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            // Validaciones
+            // Validaciones (Esto está perfecto como lo tienes)
             if (string.IsNullOrWhiteSpace(txtTitle.Text))
             {
                 MessageBox.Show("Por favor, ingresá un título para el juego.",
@@ -114,57 +115,65 @@ namespace NexusLauncher.UI
 
             try
             {
+                // El objeto 'Game' se crea correctamente
                 var game = new Game
                 {
                     Title = txtTitle.Text.Trim(),
                     InstallPath = txtInstallPath.Text.Trim(),
                     IsInstalled = chkIsInstalled.Checked
+                    // NOTA: Tu modelo 'Game.cs' también tiene Price e Image
+                    // Deberías añadirlos aquí si los tienes en el formulario
+                    // Price = numPrice.Value,
+                    // Image = (byte[])picImage.Tag
                 };
 
                 if (_esEdicion)
                 {
+                    // --- INICIO DE CORRECCIÓN ---
+
                     // EDITAR juego existente
                     game.Id = _gameId.Value;
-                    bool actualizado = _gameService.UpdateGame(game);
 
-                    if (actualizado)
-                    {
-                        MessageBox.Show("Juego actualizado correctamente.",
-                            "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se pudo actualizar el juego.",
-                            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    // 1. Simplemente llamamos al método. No devuelve 'bool'.
+                    _gameService.UpdateGame(game);
+
+                    // 2. Si la línea anterior no lanzó una excepción, asumimos éxito.
+                    //    Quitamos el 'if (actualizado)' y el 'else'.
+                    MessageBox.Show("Juego actualizado correctamente.",
+                        "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+
+                    // --- FIN DE CORRECCIÓN ---
                 }
                 else
                 {
-                    // CREAR nuevo juego
-                    int nuevoId = _gameService.CreateGame(game);
+                    // --- INICIO DE CORRECCIÓN ---
 
-                    if (nuevoId > 0)
-                    {
-                        MessageBox.Show("Juego agregado correctamente.",
-                            "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se pudo agregar el juego.",
-                            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    // CREAR nuevo juego
+
+                    // 1. Simplemente llamamos al método. No devuelve 'int'.
+                    _gameService.CreateGame(game);
+
+                    // 2. Si la línea anterior no lanzó una excepción, asumimos éxito.
+                    //    Quitamos el 'if (nuevoId > 0)' y el 'else'.
+                    MessageBox.Show("Juego agregado correctamente.",
+                        "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+
+                    // --- FIN DE CORRECCIÓN ---
                 }
             }
             catch (Exception ex)
             {
+                // Si la BLL o DAL fallan, la excepción se atrapa aquí.
                 MessageBox.Show($"Error al guardar:\n{ex.Message}",
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        // --- FIN DEL MÉTODO CORREGIDO ---
+
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {

@@ -104,3 +104,8 @@ C:\Users\pc\source\repos\NexusLauncherActual\NexusLauncher\NexusLauncher.UI\obj\
 C:\Users\pc\source\repos\NexusLauncherActual\NexusLauncher\NexusLauncher.UI\obj\Debug\NexusLauncher.UI.frmBibliotecaGeneral.resources
 C:\Users\pc\source\repos\NexusLauncherActual\NexusLauncher\NexusLauncher.UI\obj\Debug\NexusLauncher.UI.frmElegirUserOAdmin.resources
 C:\Users\pc\source\repos\NexusLauncherActual\NexusLauncher\NexusLauncher.UI\obj\Debug\NexusLauncher.UI.frmTienda.resources
+D:\Github\NexusLauncher\NexusLauncher.UI\obj\Debug\NexusLauncher.UI.frmBibliotecaGeneral.resources
+D:\Github\NexusLauncher\NexusLauncher.UI\obj\Debug\NexusLauncher.UI.frmElegirUserOAdmin.resources
+D:\Github\NexusLauncher\NexusLauncher.UI\obj\Debug\NexusLauncher.UI.frmPerfil.resources
+D:\Github\NexusLauncher\NexusLauncher.UI\obj\Debug\NexusLauncher.UI.frmTienda.resources
+D:\Github\NexusLauncher\NexusLauncher.UI\obj\Debug\NexusLauncher.UI.frmVerNoticia.resources

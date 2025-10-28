@@ -1,190 +1,109 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
-using NexusLauncher.BLL;
+﻿using NexusLauncher.BLL;
 using NexusLauncher.Models;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace NexusLauncher.UI
 {
     public partial class frmMain : Form
     {
-        private readonly GameService _gameService;
+        private User loggedInUser;
+        private NewsService newsService = new NewsService(); // Usar NewsService
 
-        public frmMain()
+        public frmMain(User user)
         {
             InitializeComponent();
-
-            _gameService = new GameService();
-
-            // Si el diseñador no conectó los eventos, los enlazamos aquí para seguridad
-            this.Load += frmMain_Load;
-
-            // Intentamos enlazar eventos de controles (si existen)
-            if (this.Controls["btnBiblioteca"] is Button btnBiblio)
-                btnBiblio.Click += btnTienda_Click;
-            if (this.Controls["dgvGames"] is DataGridView dgv)
-                dgv.CellDoubleClick += dgvGames_CellDoubleClick;
+            this.loggedInUser = user;
         }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            // Verificar que haya una sesión activa
-            if (!SessionManager.Instance.IsLoggedIn())
-            {
-                MessageBox.Show("No hay una sesión activa.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();
-                return;
-            }
-
-            // Obtener el usuario actual desde el SessionManager
-            var currentUser = SessionManager.Instance.CurrentUser;
-
-            // Bienvenida al usuario
-            if (this.Controls["lblWelcome"] is Label lbl)
-                lbl.Text = $"Bienvenido, {currentUser.DisplayName ?? currentUser.Username}. Sus juegos:";
-
-            // Configurar y cargar la biblioteca del usuario
-            if (this.Controls["dgvGames"] is DataGridView)
-                ConfigurarDataGridView();
-
-            LoadGamesForCurrentUser();
+            lblWelcome.Text = $"Bienvenido, {loggedInUser.NombreUsuario}";
+            ConfigureAdminVisibility();
+            //LoadNews();
         }
 
-        private void ConfigurarDataGridView()
+        private void ConfigureAdminVisibility()
         {
-            var dgv = this.Controls["dgvGames"] as DataGridView;
-            if (dgv == null) return;
-
-            dgv.AutoGenerateColumns = false;
-            dgv.Columns.Clear();
-
-            // Columna ID (oculta)
-            dgv.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "Id",
-                HeaderText = "ID",
-                Name = "colId",
-                Visible = false
-            });
-
-            // Título
-            dgv.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "Title",
-                HeaderText = "Título",
-                Name = "colTitle",
-                Width = 250
-            });
-
-            // Ruta de instalación
-            dgv.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "InstallPath",
-                HeaderText = "Ruta",
-                Name = "colInstallPath",
-                Width = 300
-            });
-
-            // Instalado (checkbox)
-            dgv.Columns.Add(new DataGridViewCheckBoxColumn
-            {
-                DataPropertyName = "IsInstalled",
-                HeaderText = "Instalado",
-                Name = "colIsInstalled",
-                Width = 80
-            });
-
-            // Fecha de compra (opcional)
-            dgv.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "PurchaseDate",
-                HeaderText = "Fecha compra",
-                Name = "colPurchaseDate",
-                Width = 140
-            });
-
-            // Owned (opcional)
-            dgv.Columns.Add(new DataGridViewCheckBoxColumn
-            {
-                DataPropertyName = "Owned",
-                HeaderText = "Owned",
-                Name = "colOwned",
-                Width = 60
-            });
-
-            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgv.MultiSelect = false;
-            dgv.ReadOnly = true;
-            dgv.AllowUserToAddRows = false;
-            dgv.AllowUserToDeleteRows = false;
+        
+            btnAdminNoticias.Visible = loggedInUser.IsAdmin;
+            btnGestionJuegos.Visible = loggedInUser.IsAdmin;
         }
 
-        private void LoadGamesForCurrentUser()
+        private void LoadNews()
         {
-            try
-            {
-                var currentUser = SessionManager.Instance.CurrentUser;
-                if (currentUser == null)
-                {
-                    MessageBox.Show("Usuario no encontrado en la sesión.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+            flpNoticias.Controls.Clear();
+            List<News> newsList = newsService.GetLatestNews(5); // Traer 5 noticias
 
-                var games = _gameService.GetLibrary(currentUser) ?? new List<Game>();
-
-                var dgv = this.Controls["dgvGames"] as DataGridView;
-                if (dgv != null)
-                {
-                    dgv.DataSource = null;
-                    dgv.DataSource = games;
-                    return;
-                }
-            }
-            catch (Exception ex)
+            foreach (var newsItem in newsList)
             {
-                MessageBox.Show($"Error al cargar juegos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Label lblNewsTitle = new Label();
+                lblNewsTitle.Text = newsItem.Title; // Usar Title
+                lblNewsTitle.Font = new Font(this.Font.FontFamily, 10, FontStyle.Bold);
+                lblNewsTitle.AutoSize = true;
+                lblNewsTitle.Cursor = Cursors.Hand;
+                lblNewsTitle.ForeColor = Color.Blue;
+                lblNewsTitle.Tag = newsItem.ID;
+                lblNewsTitle.Click += LblNewsTitle_Click;
+
+                Label lblNewsDate = new Label();
+                lblNewsDate.Text = newsItem.PublicationDate.ToShortDateString(); // Usar PublicationDate
+                lblNewsDate.Font = new Font(this.Font.FontFamily, 8, FontStyle.Italic);
+                lblNewsDate.AutoSize = true;
+                lblNewsDate.Margin = new Padding(3, 0, 3, 10);
+
+                flpNoticias.Controls.Add(lblNewsTitle);
+                flpNoticias.Controls.Add(lblNewsDate);
             }
         }
 
-        // Doble clic en fila -> acción sobre el juego (placeholder: mostrar detalles / ejecutar)
-        private void dgvGames_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void LblNewsTitle_Click(object sender, EventArgs e)
         {
-            var dgv = sender as DataGridView;
-            if (dgv == null) return;
-            if (e.RowIndex < 0) return;
-
-            var item = dgv.Rows[e.RowIndex].DataBoundItem as Game;
-            if (item == null) return;
-
-            // Aquí podés lanzar el ejecutable o abrir la gestión del juego.
-            // Por ahora mostramos detalles.
-            MessageBox.Show($"Juego: {item.Title}\nRuta: {item.InstallPath ?? "(no disponible)"}\nInstalado: {(item.IsInstalled ? "Sí" : "No")}",
-                "Detalles del juego", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Label clickedLabel = sender as Label;
+            if (clickedLabel != null)
+            {
+                int newsId = (int)clickedLabel.Tag;
+                frmVerNoticia viewNewsForm = new frmVerNoticia(newsId);
+                viewNewsForm.ShowDialog();
+            }
         }
 
-        // Botón: abrir la tienda
+        private void btnBiblioteca_Click(object sender, EventArgs e)
+        {
+            frmBiblioteca bibliotecaForm = new frmBiblioteca();
+            bibliotecaForm.ShowDialog();
+        }
+
         private void btnTienda_Click(object sender, EventArgs e)
         {
-            using (var frmTienda = new frmTienda())
-            {
-                frmTienda.ShowDialog();
-            }
-
-            // Recargar por si se agregaron/quitaron/editaron juegos
-            LoadGamesForCurrentUser();
+            frmTienda tiendaForm = new frmTienda();
+            tiendaForm.ShowDialog();
         }
 
-        private void imagenPerfil_Click(object sender, EventArgs e)
+        private void btnPerfil_Click(object sender, EventArgs e)
         {
-
+            frmPerfil perfilForm = new frmPerfil();
+            perfilForm.ShowDialog();
         }
 
-        private void btn_Noticias_Click(object sender, EventArgs e)
+        private void btnAdminNoticias_Click(object sender, EventArgs e)
         {
-            using (var fremNoticias = new frmNoticias())
-            {
-                fremNoticias.ShowDialog();
-            }
+            //frmAdminNoticias adminNoticiasForm = new frmAdminNoticias();
+            //adminNoticiasForm.ShowDialog();
+            //LoadNews(); // Recargar noticias
+        }
+
+        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            SessionManager.Instance.Logout();
+            Application.Exit();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

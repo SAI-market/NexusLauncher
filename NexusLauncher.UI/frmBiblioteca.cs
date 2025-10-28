@@ -1,149 +1,60 @@
-﻿using System;
-using System.Windows.Forms;
-using NexusLauncher.BLL;
+﻿using NexusLauncher.BLL;
 using NexusLauncher.Models;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace NexusLauncher.UI
 {
     public partial class frmBiblioteca : Form
     {
-        private GameService _gameService;
+        private GameService gameService = new GameService();
 
         public frmBiblioteca()
         {
             InitializeComponent();
-            _gameService = new GameService();
-
-            ConfigurarDataGridView();
-            CargarJuegos();
         }
 
-        private void ConfigurarDataGridView()
+        private void frmBiblioteca_Load(object sender, System.EventArgs e)
         {
-            // Limpiar columnas auto-generadas
-            dgvGames.AutoGenerateColumns = false;
-            dgvGames.Columns.Clear();
-
-            // Columna ID (oculta pero necesaria)
-            dgvGames.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "Id",
-                HeaderText = "ID",
-                Name = "colId",
-                Visible = false
-            });
-
-            // Columna Título
-            dgvGames.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "Title",
-                HeaderText = "Título del Juego",
-                Name = "colTitle",
-                Width = 250
-            });
-
-            // Columna Ruta de Instalación
-            dgvGames.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "InstallPath",
-                HeaderText = "Ruta de Instalación",
-                Name = "colInstallPath",
-                Width = 350
-            });
-
-            // Columna Instalado (Checkbox)
-            dgvGames.Columns.Add(new DataGridViewCheckBoxColumn
-            {
-                DataPropertyName = "IsInstalled",
-                HeaderText = "Instalado",
-                Name = "colIsInstalled",
-                Width = 80
-            });
+            LoadUserLibrary();
         }
 
-        private void CargarJuegos()
+        private void LoadUserLibrary()
         {
-            try
-            {
-                var games = _gameService.GetLibrary();
-                dgvGames.DataSource = null; // Limpiar
-                dgvGames.DataSource = games;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error al cargar los juegos:\n{ex.Message}",
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            int userId = SessionManager.Instance.CurrentUser.Id;
+            List<Game> myGames = gameService.GetGamesByUserId(userId);
+
+            dgvMisJuegos.DataSource = null;
+            dgvMisJuegos.DataSource = myGames;
+
+            // CORREGIDO: Usar 'Title' e 'InstallPath'
+            dgvMisJuegos.Columns["Id"].Visible = false;
+            dgvMisJuegos.Columns["InstallPath"].Visible = false; // Ocultar la ruta
+            dgvMisJuegos.Columns["Title"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            // Ocultar las otras columnas que no queremos ver
+            dgvMisJuegos.Columns["IsInstalled"].Visible = false;
+            dgvMisJuegos.Columns["PurchaseDate"].Visible = false;
+            dgvMisJuegos.Columns["Owned"].Visible = false;
+            dgvMisJuegos.Columns["Price"].Visible = false;
+            dgvMisJuegos.Columns["Image"].Visible = false;
+            dgvMisJuegos.Columns["ImageFileName"].Visible = false;
+            dgvMisJuegos.Columns["ImageContentType"].Visible = false;
         }
 
-        private void btnAgregar_Click(object sender, EventArgs e)
+        private void btnJugar_Click(object sender, System.EventArgs e)
         {
-            var frmGestion = new frmGestionJuego();
-            if (frmGestion.ShowDialog() == DialogResult.OK)
+            if (dgvMisJuegos.CurrentRow != null)
             {
-                CargarJuegos(); // Recargar la lista después de agregar
-            }
-        }
-
-        private void btnEditar_Click(object sender, EventArgs e)
-        {
-            if (dgvGames.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Por favor, seleccioná un juego para editar.",
-                    "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // Obtener el ID del juego seleccionado
-            int gameId = Convert.ToInt32(dgvGames.SelectedRows[0].Cells["colId"].Value);
-
-            var frmGestion = new frmGestionJuego(gameId);
-            if (frmGestion.ShowDialog() == DialogResult.OK)
-            {
-                CargarJuegos(); // Recargar después de editar
-            }
-        }
-
-        private void btnEliminar_Click(object sender, EventArgs e)
-        {
-            if (dgvGames.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Por favor, seleccioná un juego para eliminar.",
-                    "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            string titulo = dgvGames.SelectedRows[0].Cells["colTitle"].Value?.ToString();
-
-            var confirmacion = MessageBox.Show(
-                $"¿Estás seguro de que querés eliminar '{titulo}'?",
-                "Confirmar Eliminación",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
-
-            if (confirmacion == DialogResult.Yes)
-            {
+                Game selectedGame = (Game)dgvMisJuegos.CurrentRow.DataBoundItem;
                 try
                 {
-                    int gameId = Convert.ToInt32(dgvGames.SelectedRows[0].Cells["colId"].Value);
-                    bool eliminado = _gameService.DeleteGame(gameId);
-
-                    if (eliminado)
-                    {
-                        MessageBox.Show("Juego eliminado correctamente.",
-                            "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        CargarJuegos();
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se pudo eliminar el juego.",
-                            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    // CORREGIDO: Usar 'InstallPath'
+                    System.Diagnostics.Process.Start(selectedGame.InstallPath);
                 }
-                catch (Exception ex)
+                catch (System.Exception ex)
                 {
-                    MessageBox.Show($"Error al eliminar:\n{ex.Message}",
-                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"No se pudo iniciar el juego: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

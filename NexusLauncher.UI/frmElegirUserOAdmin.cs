@@ -14,7 +14,7 @@ namespace NexusLauncher.UI
             _user = user ?? throw new ArgumentNullException(nameof(user));
 
             // Mostrar info del admin en la UI (ajusta el nombre del label si en tu diseñador es distinto)
-            label1.Text = $"Has iniciado sesión como '{_user.Username}' (Administrador). ¿Cómo querés entrar?";
+            label1.Text = $"Has iniciado sesión como '{_user.NombreUsuario}' (Administrador). ¿Cómo querés entrar?";
         }
 
         // Botón: Entrar como usuario normal

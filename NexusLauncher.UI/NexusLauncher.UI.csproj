@@ -46,11 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmBibliotecaGeneral.cs">
+    <Compile Include="frmBiblioteca.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmBibliotecaGeneral.Designer.cs">
-      <DependentUpon>frmBibliotecaGeneral.cs</DependentUpon>
+    <Compile Include="frmBiblioteca.Designer.cs">
+      <DependentUpon>frmBiblioteca.cs</DependentUpon>
     </Compile>
     <Compile Include="frmElegirUserOAdmin.cs">
       <SubType>Form</SubType>
@@ -69,6 +69,12 @@
     </Compile>
     <Compile Include="frmNoticias.Designer.cs">
       <DependentUpon>frmNoticias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPerfil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPerfil.Designer.cs">
+      <DependentUpon>frmPerfil.cs</DependentUpon>
     </Compile>
     <Compile Include="frmRegistro.cs">
       <SubType>Form</SubType>
@@ -94,10 +100,16 @@
     <Compile Include="frmTienda.Designer.cs">
       <DependentUpon>frmTienda.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmVerNoticia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVerNoticia.Designer.cs">
+      <DependentUpon>frmVerNoticia.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmBibliotecaGeneral.resx">
-      <DependentUpon>frmBibliotecaGeneral.cs</DependentUpon>
+    <EmbeddedResource Include="frmBiblioteca.resx">
+      <DependentUpon>frmBiblioteca.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmElegirUserOAdmin.resx">
       <DependentUpon>frmElegirUserOAdmin.cs</DependentUpon>
@@ -108,6 +120,9 @@
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmPerfil.resx">
+      <DependentUpon>frmPerfil.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmRegistro.resx">
       <DependentUpon>frmRegistro.cs</DependentUpon>
     </EmbeddedResource>
@@ -116,6 +131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmTienda.resx">
       <DependentUpon>frmTienda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVerNoticia.resx">
+      <DependentUpon>frmVerNoticia.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -1,81 +1,67 @@
-﻿using System;
+﻿using NexusLauncher.Models;
 using System.Data.SqlClient;
-using NexusLauncher.Models;
 
 namespace NexusLauncher.DAL
 {
     public class UserDAL
     {
-        public User GetByUsername(string username)
+        private string connectionString = DbConfig.ConnectionString;
+
+        public User Login(string username, string password)
         {
-            using (var conn = new SqlConnection(DbConfig.ConnectionString))
-            using (var cmd = new SqlCommand(
-                "SELECT Id, Username, Password, DisplayName, Email, Admin FROM Users WHERE Username = @u", conn))
+            User user = null;
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                cmd.Parameters.AddWithValue("@u", username);
-                conn.Open();
-                using (var r = cmd.ExecuteReader())
+                // Asumiendo que tus columnas son 'NombreUsuario', 'Password', 'Email', 'IsAdmin'
+                string query = "SELECT ID, NombreUsuario, Email, IsAdmin FROM Users WHERE NombreUsuario = @Username AND Password = @Password";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Username", username);
+                command.Parameters.AddWithValue("@Password", password);
+
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
                 {
-                    if (r.Read())
+                    user = new User
                     {
-                        return new User
-                        {
-                            Id = (int)r["Id"],
-                            Username = (string)r["Username"],
-                            Password = (string)r["Password"],
-                            DisplayName = r["DisplayName"] as string,
-                            Email = r["Email"] as string,
-                            Admin = Convert.ToBoolean(r["Admin"])
-                        };
-                    }
+                        Id = (int)reader["ID"],
+                        NombreUsuario = (string)reader["NombreUsuario"],
+                        Email = (string)reader["Email"],
+                        IsAdmin = (bool)reader["IsAdmin"]
+                    };
                 }
             }
-            return null;
+            return user;
         }
 
-        public User GetByEmail(string email)
+        public bool Register(User user)
         {
-            using (var conn = new SqlConnection(DbConfig.ConnectionString))
-            using (var cmd = new SqlCommand(
-                "SELECT Id, Username, Password, DisplayName, Email, Admin FROM Users WHERE Email = @e", conn))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                cmd.Parameters.AddWithValue("@e", email);
-                conn.Open();
-                using (var r = cmd.ExecuteReader())
-                {
-                    if (r.Read())
-                    {
-                        return new User
-                        {
-                            Id = (int)r["Id"],
-                            Username = (string)r["Username"],
-                            Password = (string)r["Password"],
-                            DisplayName = r["DisplayName"] as string,
-                            Email = r["Email"] as string,
-                            Admin = Convert.ToBoolean(r["Admin"])
-                        };
-                    }
-                }
+                string query = "INSERT INTO Users (NombreUsuario, Email, Password, IsAdmin) VALUES (@Username, @Email, @Password, 0)";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Username", user.NombreUsuario);
+                command.Parameters.AddWithValue("@Email", user.Email);
+                command.Parameters.AddWithValue("@Password", user.Password);
+
+                connection.Open();
+                int result = command.ExecuteNonQuery();
+                return result > 0;
             }
-            return null;
         }
 
-        public int CreateUser(User user)
+        public bool UpdatePassword(int userId, string newPassword)
         {
-            using (var conn = new SqlConnection(DbConfig.ConnectionString))
-            using (var cmd = new SqlCommand(
-                "INSERT INTO Users (Username, Password, DisplayName, Email, Admin) " +
-                "VALUES (@u, @p, @d, @e, @a); SELECT CAST(SCOPE_IDENTITY() AS INT);",
-                conn))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                cmd.Parameters.AddWithValue("@u", user.Username);
-                cmd.Parameters.AddWithValue("@p", user.Password);
-                cmd.Parameters.AddWithValue("@d", user.DisplayName ?? (object)System.DBNull.Value);
-                cmd.Parameters.AddWithValue("@e", user.Email ?? (object)System.DBNull.Value);
-                cmd.Parameters.AddWithValue("@a", user.Admin); // bool -> bit
-                conn.Open();
-                var result = cmd.ExecuteScalar();
-                return (result == null || result == System.DBNull.Value) ? 0 : (int)result;
+                string query = "UPDATE Users SET Password = @Password WHERE ID = @UserId";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Password", newPassword);
+                command.Parameters.AddWithValue("@UserId", userId);
+
+                connection.Open();
+                int result = command.ExecuteNonQuery();
+                return result > 0;
             }
         }
     }

@@ -1,54 +1,14 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\pc\\source\\repos\\NexusLauncherActual\\NexusLauncher\\",
+  "WorkspaceRootPath": "D:\\Github\\NexusLauncher\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7E0052D4-099D-4539-B93E-3450C878B3B9}|NexusLauncher.UI\\NexusLauncher.UI.csproj|c:\\users\\pc\\source\\repos\\nexuslauncheractual\\nexuslauncher\\nexuslauncher.ui\\frmtienda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{7E0052D4-099D-4539-B93E-3450C878B3B9}|NexusLauncher.UI\\NexusLauncher.UI.csproj|solutionrelative:nexuslauncher.ui\\frmtienda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{7E0052D4-099D-4539-B93E-3450C878B3B9}|NexusLauncher.UI\\NexusLauncher.UI.csproj|d:\\github\\nexuslauncher\\nexuslauncher.ui\\frmgestionjuego.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7E0052D4-099D-4539-B93E-3450C878B3B9}|NexusLauncher.UI\\NexusLauncher.UI.csproj|solutionrelative:nexuslauncher.ui\\frmgestionjuego.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7E0052D4-099D-4539-B93E-3450C878B3B9}|NexusLauncher.UI\\NexusLauncher.UI.csproj|c:\\users\\pc\\source\\repos\\nexuslauncheractual\\nexuslauncher\\nexuslauncher.ui\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{7E0052D4-099D-4539-B93E-3450C878B3B9}|NexusLauncher.UI\\NexusLauncher.UI.csproj|solutionrelative:nexuslauncher.ui\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7E0052D4-099D-4539-B93E-3450C878B3B9}|NexusLauncher.UI\\NexusLauncher.UI.csproj|c:\\users\\pc\\source\\repos\\nexuslauncheractual\\nexuslauncher\\nexuslauncher.ui\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7E0052D4-099D-4539-B93E-3450C878B3B9}|NexusLauncher.UI\\NexusLauncher.UI.csproj|solutionrelative:nexuslauncher.ui\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7E0052D4-099D-4539-B93E-3450C878B3B9}|NexusLauncher.UI\\NexusLauncher.UI.csproj|c:\\users\\pc\\source\\repos\\nexuslauncheractual\\nexuslauncher\\nexuslauncher.ui\\frmtienda.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7E0052D4-099D-4539-B93E-3450C878B3B9}|NexusLauncher.UI\\NexusLauncher.UI.csproj|solutionrelative:nexuslauncher.ui\\frmtienda.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{80168699-31FA-4817-87E2-97227B4E8081}|NexusLauncher.BLL\\NexusLauncher.BLL.csproj|c:\\users\\pc\\source\\repos\\nexuslauncheractual\\nexuslauncher\\nexuslauncher.bll\\gameservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{80168699-31FA-4817-87E2-97227B4E8081}|NexusLauncher.BLL\\NexusLauncher.BLL.csproj|solutionrelative:nexuslauncher.bll\\gameservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{80168699-31FA-4817-87E2-97227B4E8081}|NexusLauncher.BLL\\NexusLauncher.BLL.csproj|c:\\users\\pc\\source\\repos\\nexuslauncheractual\\nexuslauncher\\nexuslauncher.bll\\sessionmanager.cs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{80168699-31FA-4817-87E2-97227B4E8081}|NexusLauncher.BLL\\NexusLauncher.BLL.csproj|solutionrelative:nexuslauncher.bll\\sessionmanager.cs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7E0052D4-099D-4539-B93E-3450C878B3B9}|NexusLauncher.UI\\NexusLauncher.UI.csproj|C:\\Users\\pc\\source\\repos\\NexusLauncherActual\\NexusLauncher\\nexuslauncher.ui\\frmbibliotecageneral.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7E0052D4-099D-4539-B93E-3450C878B3B9}|NexusLauncher.UI\\NexusLauncher.UI.csproj|solutionrelative:nexuslauncher.ui\\frmbibliotecageneral.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7E0052D4-099D-4539-B93E-3450C878B3B9}|NexusLauncher.UI\\NexusLauncher.UI.csproj|C:\\Users\\pc\\source\\repos\\NexusLauncherActual\\NexusLauncher\\nexuslauncher.ui\\frmbibliotecageneral.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{7E0052D4-099D-4539-B93E-3450C878B3B9}|NexusLauncher.UI\\NexusLauncher.UI.csproj|solutionrelative:nexuslauncher.ui\\frmbibliotecageneral.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7E0052D4-099D-4539-B93E-3450C878B3B9}|NexusLauncher.UI\\NexusLauncher.UI.csproj|C:\\Users\\pc\\source\\repos\\NexusLauncherActual\\NexusLauncher\\nexuslauncher.ui\\frmelegiruseroadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7E0052D4-099D-4539-B93E-3450C878B3B9}|NexusLauncher.UI\\NexusLauncher.UI.csproj|solutionrelative:nexuslauncher.ui\\frmelegiruseroadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7E0052D4-099D-4539-B93E-3450C878B3B9}|NexusLauncher.UI\\NexusLauncher.UI.csproj|C:\\Users\\pc\\source\\repos\\NexusLauncherActual\\NexusLauncher\\nexuslauncher.ui\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7E0052D4-099D-4539-B93E-3450C878B3B9}|NexusLauncher.UI\\NexusLauncher.UI.csproj|solutionrelative:nexuslauncher.ui\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7E0052D4-099D-4539-B93E-3450C878B3B9}|NexusLauncher.UI\\NexusLauncher.UI.csproj|C:\\Users\\pc\\source\\repos\\NexusLauncherActual\\NexusLauncher\\nexuslauncher.ui\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{7E0052D4-099D-4539-B93E-3450C878B3B9}|NexusLauncher.UI\\NexusLauncher.UI.csproj|solutionrelative:nexuslauncher.ui\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7E0052D4-099D-4539-B93E-3450C878B3B9}|NexusLauncher.UI\\NexusLauncher.UI.csproj|C:\\Users\\pc\\source\\repos\\NexusLauncherActual\\NexusLauncher\\nexuslauncher.ui\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{7E0052D4-099D-4539-B93E-3450C878B3B9}|NexusLauncher.UI\\NexusLauncher.UI.csproj|solutionrelative:nexuslauncher.ui\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+      "AbsoluteMoniker": "D:0:0:{7E0052D4-099D-4539-B93E-3450C878B3B9}|NexusLauncher.UI\\NexusLauncher.UI.csproj|d:\\github\\nexuslauncher\\nexuslauncher.ui\\frmgestionjuego.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{7E0052D4-099D-4539-B93E-3450C878B3B9}|NexusLauncher.UI\\NexusLauncher.UI.csproj|solutionrelative:nexuslauncher.ui\\frmgestionjuego.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -58,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 260,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -70,153 +30,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "SessionManager.cs.cs",
-              "DocumentMoniker": "C:\\Users\\pc\\source\\repos\\NexusLauncherActual\\NexusLauncher\\NexusLauncher.BLL\\SessionManager.cs.cs",
-              "RelativeDocumentMoniker": "NexusLauncher.BLL\\SessionManager.cs.cs",
-              "ToolTip": "C:\\Users\\pc\\source\\repos\\NexusLauncherActual\\NexusLauncher\\NexusLauncher.BLL\\SessionManager.cs.cs",
-              "RelativeToolTip": "NexusLauncher.BLL\\SessionManager.cs.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAYwEAAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-24T21:25:57.596Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "frmMain.cs",
-              "DocumentMoniker": "C:\\Users\\pc\\source\\repos\\NexusLauncherActual\\NexusLauncher\\NexusLauncher.UI\\frmMain.cs",
-              "RelativeDocumentMoniker": "NexusLauncher.UI\\frmMain.cs",
-              "ToolTip": "C:\\Users\\pc\\source\\repos\\NexusLauncherActual\\NexusLauncher\\NexusLauncher.UI\\frmMain.cs",
-              "RelativeToolTip": "NexusLauncher.UI\\frmMain.cs",
-              "ViewState": "AgIAAKcAAAAAAAAAAAAAALUAAABDAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-24T21:22:41.971Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "frmMain.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\pc\\source\\repos\\NexusLauncherActual\\NexusLauncher\\NexusLauncher.UI\\frmMain.cs",
-              "RelativeDocumentMoniker": "NexusLauncher.UI\\frmMain.cs",
-              "ToolTip": "C:\\Users\\pc\\source\\repos\\NexusLauncherActual\\NexusLauncher\\NexusLauncher.UI\\frmMain.cs [Dise\u00F1o]",
-              "RelativeToolTip": "NexusLauncher.UI\\frmMain.cs [Dise\u00F1o]",
+              "Title": "frmGestionJuego.cs [Dise\u00F1o]",
+              "DocumentMoniker": "D:\\Github\\NexusLauncher\\NexusLauncher.UI\\frmGestionJuego.cs",
+              "RelativeDocumentMoniker": "NexusLauncher.UI\\frmGestionJuego.cs",
+              "ToolTip": "D:\\Github\\NexusLauncher\\NexusLauncher.UI\\frmGestionJuego.cs [Dise\u00F1o]",
+              "RelativeToolTip": "NexusLauncher.UI\\frmGestionJuego.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-24T21:22:39.855Z",
+              "WhenOpened": "2025-10-28T03:59:38.761Z",
               "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "GameService.cs",
-              "DocumentMoniker": "C:\\Users\\pc\\source\\repos\\NexusLauncherActual\\NexusLauncher\\NexusLauncher.BLL\\GameService.cs",
-              "RelativeDocumentMoniker": "NexusLauncher.BLL\\GameService.cs",
-              "ToolTip": "C:\\Users\\pc\\source\\repos\\NexusLauncherActual\\NexusLauncher\\NexusLauncher.BLL\\GameService.cs",
-              "RelativeToolTip": "NexusLauncher.BLL\\GameService.cs",
-              "ViewState": "AgIAACAAAAAAAAAAAAAuwCsAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-24T21:14:26.666Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "frmTienda.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\pc\\source\\repos\\NexusLauncherActual\\NexusLauncher\\NexusLauncher.UI\\frmTienda.Designer.cs",
-              "RelativeDocumentMoniker": "NexusLauncher.UI\\frmTienda.Designer.cs",
-              "ToolTip": "C:\\Users\\pc\\source\\repos\\NexusLauncherActual\\NexusLauncher\\NexusLauncher.UI\\frmTienda.Designer.cs",
-              "RelativeToolTip": "NexusLauncher.UI\\frmTienda.Designer.cs",
-              "ViewState": "AgIAAFYAAAAAAAAAAAAcwF8AAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-24T21:03:07.576Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "frmTienda.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\pc\\source\\repos\\NexusLauncherActual\\NexusLauncher\\NexusLauncher.UI\\frmTienda.cs",
-              "RelativeDocumentMoniker": "NexusLauncher.UI\\frmTienda.cs",
-              "ToolTip": "C:\\Users\\pc\\source\\repos\\NexusLauncherActual\\NexusLauncher\\NexusLauncher.UI\\frmTienda.cs [Dise\u00F1o]",
-              "RelativeToolTip": "NexusLauncher.UI\\frmTienda.cs [Dise\u00F1o]",
+              "Title": "frmGestionJuego.cs",
+              "DocumentMoniker": "D:\\Github\\NexusLauncher\\NexusLauncher.UI\\frmGestionJuego.cs",
+              "RelativeDocumentMoniker": "NexusLauncher.UI\\frmGestionJuego.cs",
+              "ToolTip": "D:\\Github\\NexusLauncher\\NexusLauncher.UI\\frmGestionJuego.cs",
+              "RelativeToolTip": "NexusLauncher.UI\\frmGestionJuego.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAALcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-24T20:16:03.245Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "frmBibliotecaGeneral.cs",
-              "DocumentMoniker": "C:\\Users\\pc\\source\\repos\\NexusLauncherActual\\NexusLauncher\\NexusLauncher.UI\\frmBibliotecaGeneral.cs",
-              "RelativeDocumentMoniker": "NexusLauncher.UI\\frmBibliotecaGeneral.cs",
-              "ToolTip": "C:\\Users\\pc\\source\\repos\\NexusLauncherActual\\NexusLauncher\\NexusLauncher.UI\\frmBibliotecaGeneral.cs",
-              "RelativeToolTip": "NexusLauncher.UI\\frmBibliotecaGeneral.cs",
-              "ViewState": "AgIAAGwAAAAAAAAAAAAcwHgAAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-21T14:34:47.79Z",
+              "WhenOpened": "2025-10-28T03:53:10.253Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "frmBibliotecaGeneral.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\pc\\source\\repos\\NexusLauncherActual\\NexusLauncher\\NexusLauncher.UI\\frmBibliotecaGeneral.cs",
-              "RelativeDocumentMoniker": "NexusLauncher.UI\\frmBibliotecaGeneral.cs",
-              "ToolTip": "C:\\Users\\pc\\source\\repos\\NexusLauncherActual\\NexusLauncher\\NexusLauncher.UI\\frmBibliotecaGeneral.cs [Dise\u00F1o]",
-              "RelativeToolTip": "NexusLauncher.UI\\frmBibliotecaGeneral.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-21T14:34:24.62Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "frmLogin.cs",
-              "DocumentMoniker": "C:\\Users\\pc\\source\\repos\\NexusLauncherActual\\NexusLauncher\\NexusLauncher.UI\\frmLogin.cs",
-              "RelativeDocumentMoniker": "NexusLauncher.UI\\frmLogin.cs",
-              "ToolTip": "C:\\Users\\pc\\source\\repos\\NexusLauncherActual\\NexusLauncher\\NexusLauncher.UI\\frmLogin.cs",
-              "RelativeToolTip": "NexusLauncher.UI\\frmLogin.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAcwEMAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-21T14:33:54.197Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "frmElegirUserOAdmin.cs",
-              "DocumentMoniker": "C:\\Users\\pc\\source\\repos\\NexusLauncherActual\\NexusLauncher\\NexusLauncher.UI\\frmElegirUserOAdmin.cs",
-              "RelativeDocumentMoniker": "NexusLauncher.UI\\frmElegirUserOAdmin.cs",
-              "ToolTip": "C:\\Users\\pc\\source\\repos\\NexusLauncherActual\\NexusLauncher\\NexusLauncher.UI\\frmElegirUserOAdmin.cs",
-              "RelativeToolTip": "NexusLauncher.UI\\frmElegirUserOAdmin.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-21T14:33:36.246Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "App.config",
-              "DocumentMoniker": "C:\\Users\\pc\\source\\repos\\NexusLauncherActual\\NexusLauncher\\NexusLauncher.UI\\App.config",
-              "RelativeDocumentMoniker": "NexusLauncher.UI\\App.config",
-              "ToolTip": "C:\\Users\\pc\\source\\repos\\NexusLauncherActual\\NexusLauncher\\NexusLauncher.UI\\App.config",
-              "RelativeToolTip": "NexusLauncher.UI\\App.config",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAA9AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-10-21T13:58:13.861Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "frmLogin.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\pc\\source\\repos\\NexusLauncherActual\\NexusLauncher\\NexusLauncher.UI\\frmLogin.cs",
-              "RelativeDocumentMoniker": "NexusLauncher.UI\\frmLogin.cs",
-              "ToolTip": "C:\\Users\\pc\\source\\repos\\NexusLauncherActual\\NexusLauncher\\NexusLauncher.UI\\frmLogin.cs [Dise\u00F1o]",
-              "RelativeToolTip": "NexusLauncher.UI\\frmLogin.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-21T13:53:38.732Z"
             }
           ]
         },

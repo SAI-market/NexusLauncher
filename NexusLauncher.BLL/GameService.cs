@@ -1,64 +1,54 @@
-﻿using System;
-using System.Collections.Generic;
-using NexusLauncher.DAL;
+﻿using NexusLauncher.DAL;
 using NexusLauncher.Models;
+using System.Collections.Generic;
 
 namespace NexusLauncher.BLL
 {
     public class GameService
     {
-        private readonly GameDAL _gameDAL = new GameDAL();
+        private GameDAL gameDAL = new GameDAL();
 
-        // tu GetLibrary() sin parámetros existente puede seguir devolviendo todos los juegos
-        public List<Game> GetLibrary()
+        // --- MÉTODOS DE TIENDA Y BIBLIOTECA (Sprint 3/4) ---
+
+        public List<Game> GetAllGames()
         {
-            return _gameDAL.GetAllGames();
+            return gameDAL.GetAllGames();
         }
 
-        // obtener la biblioteca del usuario
-        public List<Game> GetLibrary(User user)
+        public List<Game> GetGamesByUserId(int userId)
         {
-            if (user == null) return new List<Game>();
-            return _gameDAL.GetLibraryByUserId(user.Id);
+            return gameDAL.GetGamesByUserId(userId);
         }
 
-        // GetGame, CreateGame, UpdateGame, DeleteGame
-        public Game GetGame(int id)
+        public bool BuyGame(int userId, int gameId)
         {
-            if (id <= 0) throw new ArgumentException("Id inválido.", nameof(id));
-            return _gameDAL.GetById(id);
+            if (userId <= 0 || gameId <= 0)
+            {
+                return false;
+            }
+            return gameDAL.BuyGame(userId, gameId);
         }
 
-        public int CreateGame(Game game)
-        {
-            if (game == null) throw new ArgumentNullException(nameof(game));
-            if (string.IsNullOrWhiteSpace(game.Title))
-                throw new ArgumentException("El título no puede estar vacío.", nameof(game.Title));
+        // --- MÉTODOS CRUD DE ADMIN (Sprint 2 - FALTANTES) ---
 
-            var newId = _gameDAL.Create(game);
-            if (newId > 0) game.Id = newId;
-            return newId;
+        public Game GetGame(int gameId)
+        {
+            return gameDAL.GetGameById(gameId);
         }
 
-        public bool UpdateGame(Game game)
+        public void CreateGame(Game game)
         {
-            if (game == null) throw new ArgumentNullException(nameof(game));
-            if (game.Id <= 0) throw new ArgumentException("Id inválido.", nameof(game.Id));
-            if (string.IsNullOrWhiteSpace(game.Title))
-                throw new ArgumentException("El título no puede estar vacío.", nameof(game.Title));
+            // Aquí se pueden añadir validaciones, ej:
+            // if (string.IsNullOrEmpty(game.Title))
+            //     throw new Exception("El título es obligatorio");
 
-            return _gameDAL.Update(game);
+            gameDAL.CreateGame(game);
         }
 
-        public bool DeleteGame(int id)
+        public void UpdateGame(Game game)
         {
-            if (id <= 0) throw new ArgumentException("Id inválido.", nameof(id));
-            return _gameDAL.Delete(id);
+            // Aquí se pueden añadir validaciones
+            gameDAL.UpdateGame(game);
         }
-
-        // Wrappers de UserGames
-        public bool AddGameToUser(User user, int gameId) => user != null && _gameDAL.AddGameToUser(user.Id, gameId);
-        public bool RemoveGameFromUser(User user, int gameId) => user != null && _gameDAL.RemoveGameFromUser(user.Id, gameId);
-        public bool UserOwnsGame(User user, int gameId) => user != null && _gameDAL.UserOwnsGame(user.Id, gameId);
     }
 }

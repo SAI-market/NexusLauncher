@@ -1,210 +1,153 @@
-﻿using System;
+﻿using NexusLauncher.Models;
+using System; // Necesario para DBNull
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
-using NexusLauncher.Models;
 
 namespace NexusLauncher.DAL
 {
     public class GameDAL
     {
+        private string connectionString = DbConfig.ConnectionString;
+
+        // --- MÉTODOS DE TIENDA Y BIBLIOTECA (Sprint 3/4) ---
+
         public List<Game> GetAllGames()
         {
-            var games = new List<Game>();
-
-            using (var conn = new SqlConnection(DbConfig.ConnectionString))
-            using (var cmd = new SqlCommand(
-                "SELECT Id, Title, InstallPath, IsInstalled, Price, Image, ImageFileName, ImageContentType FROM Games",
-                conn))
+            List<Game> games = new List<Game>();
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                conn.Open();
-                using (var r = cmd.ExecuteReader())
+                // Usamos las columnas de tu modelo: Title, InstallPath, Price
+                string query = "SELECT ID, Title, InstallPath, Price FROM Games";
+                SqlCommand command = new SqlCommand(query, connection);
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
                 {
-                    while (r.Read())
+                    games.Add(new Game
                     {
-                        games.Add(MapReaderToGame(r));
-                    }
+                        Id = (int)reader["ID"],
+                        Title = (string)reader["Title"],
+                        InstallPath = (string)reader["InstallPath"],
+                        Price = reader["Price"] != DBNull.Value ? (decimal)reader["Price"] : 0m
+                    });
                 }
             }
-
             return games;
         }
 
-        public Game GetById(int id)
+        public List<Game> GetGamesByUserId(int userId)
         {
-            using (var conn = new SqlConnection(DbConfig.ConnectionString))
-            using (var cmd = new SqlCommand(
-                "SELECT Id, Title, InstallPath, IsInstalled, Price, Image, ImageFileName, ImageContentType FROM Games WHERE Id = @id",
-                conn))
+            List<Game> games = new List<Game>();
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                cmd.Parameters.AddWithValue("@id", id);
-                conn.Open();
-                using (var r = cmd.ExecuteReader())
+                // Usamos las columnas de tu modelo: Title, InstallPath
+                string query = @"
+                    SELECT j.ID, j.Title, j.InstallPath 
+                    FROM Games j
+                    INNER JOIN UserGames uj ON j.ID = uj.GameID
+                    WHERE uj.UserID = @UserID";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@UserID", userId);
+
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
                 {
-                    if (r.Read())
+                    games.Add(new Game
                     {
-                        return MapReaderToGame(r);
-                    }
+                        Id = (int)reader["ID"],
+                        Title = (string)reader["Title"],
+                        InstallPath = (string)reader["InstallPath"]
+                    });
                 }
             }
-            return null;
+            return games;
         }
 
-        public int Create(Game game)
+        public bool BuyGame(int userId, int gameId)
         {
-            using (var conn = new SqlConnection(DbConfig.ConnectionString))
-            using (var cmd = new SqlCommand(@"
-                INSERT INTO Games (Title, InstallPath, IsInstalled, Price, Image, ImageFileName, ImageContentType)
-                VALUES (@t, @p, @i, @price, @img, @imgName, @imgType);
-                SELECT CAST(SCOPE_IDENTITY() AS INT);", conn))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                cmd.Parameters.AddWithValue("@t", game.Title ?? (object)DBNull.Value);
-                cmd.Parameters.AddWithValue("@p", game.InstallPath ?? (object)DBNull.Value);
-                cmd.Parameters.AddWithValue("@i", game.IsInstalled);
-                cmd.Parameters.AddWithValue("@price", game.Price);
-                cmd.Parameters.AddWithValue("@img", game.Image ?? (object)DBNull.Value);
-                cmd.Parameters.AddWithValue("@imgName", game.ImageFileName ?? (object)DBNull.Value);
-                cmd.Parameters.AddWithValue("@imgType", game.ImageContentType ?? (object)DBNull.Value);
+                string checkQuery = "SELECT COUNT(1) FROM UserGames WHERE UserID = @UserID AND GameID = @GameID";
+                SqlCommand checkCmd = new SqlCommand(checkQuery, connection);
+                checkCmd.Parameters.AddWithValue("@UserID", userId);
+                checkCmd.Parameters.AddWithValue("@GameID", gameId);
 
-                conn.Open();
-                var result = cmd.ExecuteScalar();
-                return (result == null || result == DBNull.Value) ? 0 : (int)result;
-            }
-        }
-
-        public bool Update(Game game)
-        {
-            using (var conn = new SqlConnection(DbConfig.ConnectionString))
-            using (var cmd = new SqlCommand(@"
-                UPDATE Games
-                SET Title = @t,
-                    InstallPath = @p,
-                    IsInstalled = @i,
-                    Price = @price,
-                    Image = @img,
-                    ImageFileName = @imgName,
-                    ImageContentType = @imgType
-                WHERE Id = @id", conn))
-            {
-                cmd.Parameters.AddWithValue("@t", game.Title ?? (object)DBNull.Value);
-                cmd.Parameters.AddWithValue("@p", game.InstallPath ?? (object)DBNull.Value);
-                cmd.Parameters.AddWithValue("@i", game.IsInstalled);
-                cmd.Parameters.AddWithValue("@price", game.Price);
-                cmd.Parameters.AddWithValue("@img", game.Image ?? (object)DBNull.Value);
-                cmd.Parameters.AddWithValue("@imgName", game.ImageFileName ?? (object)DBNull.Value);
-                cmd.Parameters.AddWithValue("@imgType", game.ImageContentType ?? (object)DBNull.Value);
-                cmd.Parameters.AddWithValue("@id", game.Id);
-
-                conn.Open();
-                var rows = cmd.ExecuteNonQuery();
-                return rows > 0;
-            }
-        }
-
-        public bool Delete(int id)
-        {
-            using (var conn = new SqlConnection(DbConfig.ConnectionString))
-            using (var cmd = new SqlCommand("DELETE FROM Games WHERE Id = @id", conn))
-            {
-                cmd.Parameters.AddWithValue("@id", id);
-                conn.Open();
-                var rows = cmd.ExecuteNonQuery();
-                return rows > 0;
-            }
-        }
-
-        // --------------------------
-        // Métodos de biblioteca por usuario
-        // --------------------------
-
-        public List<Game> GetLibraryByUserId(int userId)
-        {
-            var list = new List<Game>();
-
-            using (var conn = new SqlConnection(DbConfig.ConnectionString))
-            using (var cmd = new SqlCommand(@"
-                SELECT g.Id, g.Title, g.InstallPath, g.IsInstalled, g.Price,
-                       g.Image, g.ImageFileName, g.ImageContentType,
-                       ug.PurchaseDate, ug.Owned
-                FROM Games g
-                INNER JOIN UserGames ug ON ug.GameId = g.Id
-                WHERE ug.UserId = @uid
-                ORDER BY ug.PurchaseDate DESC", conn))
-            {
-                cmd.Parameters.AddWithValue("@uid", userId);
-                conn.Open();
-
-                using (var r = cmd.ExecuteReader())
+                connection.Open();
+                int count = (int)checkCmd.ExecuteScalar();
+                if (count > 0)
                 {
-                    while (r.Read())
+                    return false; // Ya lo tiene
+                }
+
+                string insertQuery = "INSERT INTO UserGames (UserID, GameID) VALUES (@UserID, @GameID)";
+                SqlCommand insertCmd = new SqlCommand(insertQuery, connection);
+                insertCmd.Parameters.AddWithValue("@UserID", userId);
+                insertCmd.Parameters.AddWithValue("@GameID", gameId);
+
+                int result = insertCmd.ExecuteNonQuery();
+                return result > 0;
+            }
+        }
+
+        // --- MÉTODOS CRUD DE ADMIN (Sprint 2 - FALTANTES) ---
+
+        public Game GetGameById(int gameId)
+        {
+            Game game = null;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                // Usamos las columnas de tu modelo: Title, InstallPath, Price, Image
+                string query = "SELECT ID, Title, InstallPath, Price, Image FROM Games WHERE ID = @ID";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@ID", gameId);
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    game = new Game
                     {
-                        var g = MapReaderToGame(r);
-                        g.PurchaseDate = r["PurchaseDate"] == DBNull.Value ? (DateTime?)null : (DateTime)r["PurchaseDate"];
-                        g.Owned = r["Owned"] == DBNull.Value ? true : Convert.ToBoolean(r["Owned"]);
-                        list.Add(g);
-                    }
+                        Id = (int)reader["ID"],
+                        Title = (string)reader["Title"],
+                        InstallPath = (string)reader["InstallPath"],
+                        Price = reader["Price"] != DBNull.Value ? (decimal)reader["Price"] : 0m,
+                        Image = reader["Image"] != DBNull.Value ? (byte[])reader["Image"] : null
+                    };
                 }
             }
-
-            return list;
+            return game;
         }
 
-        public bool AddGameToUser(int userId, int gameId)
+        public void CreateGame(Game game)
         {
-            using (var conn = new SqlConnection(DbConfig.ConnectionString))
-            using (var cmd = new SqlCommand(@"
-                IF NOT EXISTS (SELECT 1 FROM UserGames WHERE UserId = @uid AND GameId = @gid)
-                    INSERT INTO UserGames (UserId, GameId, PurchaseDate, Owned) VALUES (@uid, @gid, GETDATE(), 1);
-                ", conn))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                cmd.Parameters.AddWithValue("@uid", userId);
-                cmd.Parameters.AddWithValue("@gid", gameId);
-                conn.Open();
-                var rows = cmd.ExecuteNonQuery();
-                return rows > 0;
+                string query = "INSERT INTO Games (Title, InstallPath, Price, Image) VALUES (@Title, @InstallPath, @Price, @Image)";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Title", game.Title);
+                command.Parameters.AddWithValue("@InstallPath", game.InstallPath);
+                command.Parameters.AddWithValue("@Price", game.Price);
+                command.Parameters.AddWithValue("@Image", (object)game.Image ?? DBNull.Value); // Manejo de imagen nula
+                connection.Open();
+                command.ExecuteNonQuery();
             }
         }
 
-        public bool RemoveGameFromUser(int userId, int gameId)
+        public void UpdateGame(Game game)
         {
-            using (var conn = new SqlConnection(DbConfig.ConnectionString))
-            using (var cmd = new SqlCommand("DELETE FROM UserGames WHERE UserId = @uid AND GameId = @gid", conn))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                cmd.Parameters.AddWithValue("@uid", userId);
-                cmd.Parameters.AddWithValue("@gid", gameId);
-                conn.Open();
-                var rows = cmd.ExecuteNonQuery();
-                return rows > 0;
+                string query = "UPDATE Games SET Title = @Title, InstallPath = @InstallPath, Price = @Price, Image = @Image WHERE ID = @ID";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Title", game.Title);
+                command.Parameters.AddWithValue("@InstallPath", game.InstallPath);
+                command.Parameters.AddWithValue("@Price", game.Price);
+                command.Parameters.AddWithValue("@Image", (object)game.Image ?? DBNull.Value); // Manejo de imagen nula
+                command.Parameters.AddWithValue("@ID", game.Id);
+                connection.Open();
+                command.ExecuteNonQuery();
             }
-        }
-
-        public bool UserOwnsGame(int userId, int gameId)
-        {
-            using (var conn = new SqlConnection(DbConfig.ConnectionString))
-            using (var cmd = new SqlCommand("SELECT 1 FROM UserGames WHERE UserId = @uid AND GameId = @gid", conn))
-            {
-                cmd.Parameters.AddWithValue("@uid", userId);
-                cmd.Parameters.AddWithValue("@gid", gameId);
-                conn.Open();
-                var exists = cmd.ExecuteScalar();
-                return exists != null;
-            }
-        }
-
-        // Helper: mapea un DataReader a un objeto Game
-        private Game MapReaderToGame(SqlDataReader r)
-        {
-            return new Game
-            {
-                Id = r["Id"] == DBNull.Value ? 0 : (int)r["Id"],
-                Title = r["Title"] as string,
-                InstallPath = r["InstallPath"] as string,
-                IsInstalled = r["IsInstalled"] == DBNull.Value ? false : Convert.ToBoolean(r["IsInstalled"]),
-                Price = r["Price"] == DBNull.Value ? 0m : Convert.ToDecimal(r["Price"]),
-                Image = r["Image"] == DBNull.Value ? null : (byte[])r["Image"],
-                ImageFileName = r["ImageFileName"] as string,
-                ImageContentType = r["ImageContentType"] as string
-            };
         }
     }
 }
