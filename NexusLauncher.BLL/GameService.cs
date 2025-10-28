@@ -9,18 +9,26 @@ namespace NexusLauncher.BLL
     {
         private readonly GameDAL _gameDAL = new GameDAL();
 
+        // tu GetLibrary() sin parámetros existente puede seguir devolviendo todos los juegos
         public List<Game> GetLibrary()
         {
             return _gameDAL.GetAllGames();
         }
 
+        // obtener la biblioteca del usuario
+        public List<Game> GetLibrary(User user)
+        {
+            if (user == null) return new List<Game>();
+            return _gameDAL.GetLibraryByUserId(user.Id);
+        }
+
+        // GetGame, CreateGame, UpdateGame, DeleteGame
         public Game GetGame(int id)
         {
             if (id <= 0) throw new ArgumentException("Id inválido.", nameof(id));
             return _gameDAL.GetById(id);
         }
 
-        // Crea un juego; devuelve el id generado (0 si falló).
         public int CreateGame(Game game)
         {
             if (game == null) throw new ArgumentNullException(nameof(game));
@@ -32,7 +40,6 @@ namespace NexusLauncher.BLL
             return newId;
         }
 
-        // Actualiza un juego ya existente; devuelve true si se actualizó.
         public bool UpdateGame(Game game)
         {
             if (game == null) throw new ArgumentNullException(nameof(game));
@@ -43,11 +50,15 @@ namespace NexusLauncher.BLL
             return _gameDAL.Update(game);
         }
 
-        // Borra un juego por id; devuelve true si se borró.
         public bool DeleteGame(int id)
         {
             if (id <= 0) throw new ArgumentException("Id inválido.", nameof(id));
             return _gameDAL.Delete(id);
         }
+
+        // Wrappers de UserGames
+        public bool AddGameToUser(User user, int gameId) => user != null && _gameDAL.AddGameToUser(user.Id, gameId);
+        public bool RemoveGameFromUser(User user, int gameId) => user != null && _gameDAL.RemoveGameFromUser(user.Id, gameId);
+        public bool UserOwnsGame(User user, int gameId) => user != null && _gameDAL.UserOwnsGame(user.Id, gameId);
     }
 }

@@ -31,3 +31,14 @@ D:\Github\NexusLauncher\NexusLauncher.BLL\obj\Debug\NexusLauncher.BLL.csproj.Cor
 D:\Github\NexusLauncher\NexusLauncher.BLL\obj\Debug\NexusLau.720A1606.Up2Date
 D:\Github\NexusLauncher\NexusLauncher.BLL\obj\Debug\NexusLauncher.BLL.dll
 D:\Github\NexusLauncher\NexusLauncher.BLL\obj\Debug\NexusLauncher.BLL.pdb
+C:\Users\pc\source\repos\NexusLauncherActual\NexusLauncher\NexusLauncher.BLL\bin\Debug\NexusLauncher.BLL.dll
+C:\Users\pc\source\repos\NexusLauncherActual\NexusLauncher\NexusLauncher.BLL\bin\Debug\NexusLauncher.BLL.pdb
+C:\Users\pc\source\repos\NexusLauncherActual\NexusLauncher\NexusLauncher.BLL\bin\Debug\NexusLauncher.DAL.dll
+C:\Users\pc\source\repos\NexusLauncherActual\NexusLauncher\NexusLauncher.BLL\bin\Debug\NexusLauncher.Models.dll
+C:\Users\pc\source\repos\NexusLauncherActual\NexusLauncher\NexusLauncher.BLL\bin\Debug\NexusLauncher.DAL.pdb
+C:\Users\pc\source\repos\NexusLauncherActual\NexusLauncher\NexusLauncher.BLL\bin\Debug\NexusLauncher.Models.pdb
+C:\Users\pc\source\repos\NexusLauncherActual\NexusLauncher\NexusLauncher.BLL\obj\Debug\NexusLauncher.BLL.csproj.AssemblyReference.cache
+C:\Users\pc\source\repos\NexusLauncherActual\NexusLauncher\NexusLauncher.BLL\obj\Debug\NexusLauncher.BLL.csproj.CoreCompileInputs.cache
+C:\Users\pc\source\repos\NexusLauncherActual\NexusLauncher\NexusLauncher.BLL\obj\Debug\NexusLau.720A1606.Up2Date
+C:\Users\pc\source\repos\NexusLauncherActual\NexusLauncher\NexusLauncher.BLL\obj\Debug\NexusLauncher.BLL.dll
+C:\Users\pc\source\repos\NexusLauncherActual\NexusLauncher\NexusLauncher.BLL\obj\Debug\NexusLauncher.BLL.pdb
