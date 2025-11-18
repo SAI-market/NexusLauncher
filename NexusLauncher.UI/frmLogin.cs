@@ -32,13 +32,44 @@ namespace NexusLauncher.UI
 
             if (_userService.Authenticate(txtUsername.Text.Trim(), txtPassword.Text, out User user))
             {
-                // Iniciar sesión en el SessionManager
+                // Guardar sesión (ya lo tenías)
                 SessionManager.Instance.Login(user);
 
-                // Abrir el formulario principal
-                var main = new frmMain();
-                main.Show();
-                this.Hide();
+                // Si NO es admin, abrir Main directamente
+                if (!user.Admin)
+                {
+                    var main = new frmMain();
+                    main.Show();
+                    this.Hide();
+                    return;
+                }
+
+                // Si es admin, pedir que elija cómo entrar
+                using (var elegir = new frmElegirUserOAdmin(user))
+                {
+                    // mostramos modal y le pasamos this como owner
+                    var result = elegir.ShowDialog(this);
+
+                    if (result == DialogResult.OK) // Entrar como user normal
+                    {
+                        var main = new frmMain();
+                        main.Show();
+                        this.Hide();
+                        return;
+                    }
+                    else if (result == DialogResult.Yes) // Entrar como admin -> Biblioteca general
+                    {
+                        var biblioteca = new frmBibliotecaGeneral();
+                        biblioteca.Show();
+                        this.Hide();
+                        return;
+                    }
+                    else
+                    {
+                        // Canceló o cerró la ventana de elección: quedarse en login
+                        return;
+                    }
+                }
             }
             else
             {
@@ -52,12 +83,11 @@ namespace NexusLauncher.UI
             frmRegistro.ShowDialog();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
+        private void textBox1_TextChanged(object sender, EventArgs e) { }
 
-        }
+        private void label1_Click(object sender, EventArgs e) { }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void frmLogin_Load(object sender, EventArgs e)
         {
 
         }

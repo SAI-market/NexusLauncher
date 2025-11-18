@@ -41,6 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FriendRequestDto.cs" />
+    <Compile Include="Friendship.cs" />
+    <Compile Include="FriendViewModel.cs" />
+    <Compile Include="Message.cs" />
+    <Compile Include="Noticia.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

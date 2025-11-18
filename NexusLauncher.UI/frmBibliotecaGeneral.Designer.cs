@@ -1,6 +1,6 @@
 ﻿namespace NexusLauncher.UI
 {
-    partial class frmBiblioteca
+    partial class frmBibliotecaGeneral
     {
         /// <summary>
         /// Required designer variable.
@@ -33,6 +33,7 @@
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.lblTitulo = new System.Windows.Forms.Label();
+            this.btn_Noticias = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGames)).BeginInit();
             this.SuspendLayout();
             // 
@@ -95,17 +96,29 @@
             this.lblTitulo.TabIndex = 5;
             this.lblTitulo.Text = "Mi Biblioteca de Juegos";
             // 
-            // frmBiblioteca
+            // btn_Noticias
+            // 
+            this.btn_Noticias.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Noticias.Location = new System.Drawing.Point(768, 360);
+            this.btn_Noticias.Name = "btn_Noticias";
+            this.btn_Noticias.Size = new System.Drawing.Size(99, 90);
+            this.btn_Noticias.TabIndex = 8;
+            this.btn_Noticias.Text = "Noticias";
+            this.btn_Noticias.UseVisualStyleBackColor = true;
+            this.btn_Noticias.Click += new System.EventHandler(this.btn_Noticias_Click);
+            // 
+            // frmBibliotecaGeneral
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(882, 503);
+            this.Controls.Add(this.btn_Noticias);
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.dgvGames);
-            this.Name = "frmBiblioteca";
+            this.Name = "frmBibliotecaGeneral";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BibliotecaDeJuegos";
             ((System.ComponentModel.ISupportInitialize)(this.dgvGames)).EndInit();
@@ -121,5 +134,6 @@
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Label lblTitulo;
+        private System.Windows.Forms.Button btn_Noticias;
     }
 }

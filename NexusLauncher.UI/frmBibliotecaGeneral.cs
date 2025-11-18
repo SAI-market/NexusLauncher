@@ -5,11 +5,11 @@ using NexusLauncher.Models;
 
 namespace NexusLauncher.UI
 {
-    public partial class frmBiblioteca : Form
+    public partial class frmBibliotecaGeneral : Form
     {
         private GameService _gameService;
 
-        public frmBiblioteca()
+        public frmBibliotecaGeneral()
         {
             InitializeComponent();
             _gameService = new GameService();
@@ -147,5 +147,35 @@ namespace NexusLauncher.UI
                 }
             }
         }
+
+        private void btn_Noticias_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                bool isAdminMode = false;
+                var currentUser = SessionManager.Instance.CurrentUser;
+                bool isAdminUser = currentUser != null && currentUser.Admin;
+
+                if (isAdminMode || isAdminUser)
+                {
+                    using (var adminForm = new frmAdminNoticias())
+                    {
+                        adminForm.ShowDialog(this);
+                    }
+                }
+                else
+                {
+                    using (var frm = new frmNoticias())
+                    {
+                        frm.ShowDialog(this);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al abrir noticias: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
 }

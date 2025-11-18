@@ -1,4 +1,5 @@
-﻿using NexusLauncher.Models;
+﻿using NexusLauncher.DAL;
+using NexusLauncher.Models;
 using System;
 
 namespace NexusLauncher.BLL
@@ -60,6 +61,23 @@ namespace NexusLauncher.BLL
         public bool IsLoggedIn()
         {
             return _currentUser != null;
+        }
+        public void RefreshCurrentUser()
+        {
+            if (CurrentUser == null) return;
+
+            try
+            {
+                var dal = new UserDAL();
+                var reloaded = dal.GetById(CurrentUser.Id);
+                if (reloaded != null)
+                {
+                    _currentUser = reloaded;
+                }
+            }
+            catch
+            {
+            }
         }
     }
 }

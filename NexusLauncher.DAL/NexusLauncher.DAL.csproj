@@ -43,7 +43,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbConfig.cs" />
+    <Compile Include="FriendshipDAL.cs" />
     <Compile Include="GameDAL.cs" />
+    <Compile Include="MessageDAL.cs" />
+    <Compile Include="NoticiaDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserDAL.cs" />
   </ItemGroup>

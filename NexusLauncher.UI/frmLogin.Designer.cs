@@ -41,7 +41,7 @@
             // 
             this.txtUsername.Location = new System.Drawing.Point(121, 100);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(200, 20);
+            this.txtUsername.Size = new System.Drawing.Size(200, 22);
             this.txtUsername.TabIndex = 0;
             // 
             // txtPassword
@@ -49,7 +49,7 @@
             this.txtPassword.Location = new System.Drawing.Point(121, 148);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(200, 20);
+            this.txtPassword.Size = new System.Drawing.Size(200, 22);
             this.txtPassword.TabIndex = 1;
             // 
             // btnLogin
@@ -67,7 +67,7 @@
             this.lblUsername.AutoSize = true;
             this.lblUsername.Location = new System.Drawing.Point(121, 84);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(96, 13);
+            this.lblUsername.Size = new System.Drawing.Size(125, 16);
             this.lblUsername.TabIndex = 3;
             this.lblUsername.Text = "Nombre de Usuario";
             // 
@@ -76,7 +76,7 @@
             this.lblPassword.AutoSize = true;
             this.lblPassword.Location = new System.Drawing.Point(121, 132);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(61, 13);
+            this.lblPassword.Size = new System.Drawing.Size(76, 16);
             this.lblPassword.TabIndex = 4;
             this.lblPassword.Text = "Contraseña";
             // 
@@ -96,7 +96,7 @@
             this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitulo.Location = new System.Drawing.Point(116, 30);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(211, 26);
+            this.lblTitulo.Size = new System.Drawing.Size(225, 31);
             this.lblTitulo.TabIndex = 6;
             this.lblTitulo.Text = "Nexus Launcher";
             // 
@@ -113,6 +113,7 @@
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nexus Launcher - Login";
+            this.Load += new System.EventHandler(this.frmLogin_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

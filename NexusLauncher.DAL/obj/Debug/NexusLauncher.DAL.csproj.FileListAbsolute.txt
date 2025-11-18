@@ -25,3 +25,12 @@ D:\Github\NexusLauncher\NexusLauncher.DAL\obj\Debug\NexusLauncher.DAL.csproj.Cor
 D:\Github\NexusLauncher\NexusLauncher.DAL\obj\Debug\NexusLau.1C375750.Up2Date
 D:\Github\NexusLauncher\NexusLauncher.DAL\obj\Debug\NexusLauncher.DAL.dll
 D:\Github\NexusLauncher\NexusLauncher.DAL\obj\Debug\NexusLauncher.DAL.pdb
+C:\Users\pc\source\repos\NexusLauncherActual\NexusLauncher\NexusLauncher.DAL\bin\Debug\NexusLauncher.DAL.dll
+C:\Users\pc\source\repos\NexusLauncherActual\NexusLauncher\NexusLauncher.DAL\bin\Debug\NexusLauncher.DAL.pdb
+C:\Users\pc\source\repos\NexusLauncherActual\NexusLauncher\NexusLauncher.DAL\bin\Debug\NexusLauncher.Models.dll
+C:\Users\pc\source\repos\NexusLauncherActual\NexusLauncher\NexusLauncher.DAL\bin\Debug\NexusLauncher.Models.pdb
+C:\Users\pc\source\repos\NexusLauncherActual\NexusLauncher\NexusLauncher.DAL\obj\Debug\NexusLauncher.DAL.csproj.AssemblyReference.cache
+C:\Users\pc\source\repos\NexusLauncherActual\NexusLauncher\NexusLauncher.DAL\obj\Debug\NexusLauncher.DAL.csproj.CoreCompileInputs.cache
+C:\Users\pc\source\repos\NexusLauncherActual\NexusLauncher\NexusLauncher.DAL\obj\Debug\NexusLau.1C375750.Up2Date
+C:\Users\pc\source\repos\NexusLauncherActual\NexusLauncher\NexusLauncher.DAL\obj\Debug\NexusLauncher.DAL.dll
+C:\Users\pc\source\repos\NexusLauncherActual\NexusLauncher\NexusLauncher.DAL\obj\Debug\NexusLauncher.DAL.pdb

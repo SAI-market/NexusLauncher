@@ -46,17 +46,65 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmBiblioteca.cs">
+    <Compile Include="frmAdminNoticias.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmBiblioteca.Designer.cs">
-      <DependentUpon>frmBiblioteca.cs</DependentUpon>
+    <Compile Include="frmAdminNoticias.Designer.cs">
+      <DependentUpon>frmAdminNoticias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAmigos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAmigos.Designer.cs">
+      <DependentUpon>frmAmigos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmBibliotecaGeneral.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBibliotecaGeneral.Designer.cs">
+      <DependentUpon>frmBibliotecaGeneral.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmEditarPerfil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEditarPerfil.Designer.cs">
+      <DependentUpon>frmEditarPerfil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmEditorNoticia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEditorNoticia.Designer.cs">
+      <DependentUpon>frmEditorNoticia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmElegirUserOAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmElegirUserOAdmin.Designer.cs">
+      <DependentUpon>frmElegirUserOAdmin.cs</DependentUpon>
     </Compile>
     <Compile Include="frmGestionJuego.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmGestionJuego.Designer.cs">
       <DependentUpon>frmGestionJuego.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNoticiaAbierta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNoticiaAbierta.Designer.cs">
+      <DependentUpon>frmNoticiaAbierta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNoticias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNoticias.Designer.cs">
+      <DependentUpon>frmNoticias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmOperarJuego.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOperarJuego.Designer.cs">
+      <DependentUpon>frmOperarJuego.cs</DependentUpon>
     </Compile>
     <Compile Include="frmRegistro.cs">
       <SubType>Form</SubType>
@@ -76,10 +124,31 @@
     <Compile Include="frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmTienda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTienda.Designer.cs">
+      <DependentUpon>frmTienda.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmBiblioteca.resx">
-      <DependentUpon>frmBiblioteca.cs</DependentUpon>
+    <EmbeddedResource Include="frmAdminNoticias.resx">
+      <DependentUpon>frmAdminNoticias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAmigos.resx">
+      <DependentUpon>frmAmigos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBibliotecaGeneral.resx">
+      <DependentUpon>frmBibliotecaGeneral.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEditarPerfil.resx">
+      <DependentUpon>frmEditarPerfil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEditorNoticia.resx">
+      <DependentUpon>frmEditorNoticia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmElegirUserOAdmin.resx">
+      <DependentUpon>frmElegirUserOAdmin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmGestionJuego.resx">
       <DependentUpon>frmGestionJuego.cs</DependentUpon>
@@ -87,11 +156,23 @@
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmNoticiaAbierta.resx">
+      <DependentUpon>frmNoticiaAbierta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNoticias.resx">
+      <DependentUpon>frmNoticias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOperarJuego.resx">
+      <DependentUpon>frmOperarJuego.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmRegistro.resx">
       <DependentUpon>frmRegistro.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTienda.resx">
+      <DependentUpon>frmTienda.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
